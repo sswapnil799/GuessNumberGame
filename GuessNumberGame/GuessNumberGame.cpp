@@ -9,31 +9,31 @@ using std::endl;
 using std::cin;
 using std::string;
 
-unsigned int option = 0, guess = 0, rnd;
+unsigned int option = 0, guess_number = 0, generated_number;
 
 void playgame()
 {
 	cout<<"Game started\n\n";
 	do
 	{
-		cout<<"Enter guess value\n\n";
-		cin>>guess;
+		cout<<"Enter guess_number value\n\n";
+		cin>>guess_number;
 
-		if (guess == rnd)
+		if (guess_number == generated_number)
 		{
-			cout<<"your guess is correct\n";
-			cout<<"rnd: "<<rnd<<"guess: "<<guess<<endl;
+			cout<<"your guess_number is correct\n";
+			cout<<"generated_number is: "<<generated_number<<endl<<"guess_number is: "<<guess_number<<endl;
 			break;
 		}
-		else if(guess < rnd)
+		else if(guess_number < generated_number)
 		{
-			cout<<"guess is less than rand\n";
+			cout<<"guess_number is less than generated_number\n";
 		}
 		else
 		{
-			cout<<"guess is greater than rand\n";
+			cout<<"guess_number is greater than generated_number\n";
 		}
-	}while(guess != rnd);
+	}while(guess_number != generated_number);
 }
 
 int main()
@@ -44,7 +44,7 @@ int main()
 		cout<<"1. Play\n";
 		cout<<"0. Quit\n\n";
 
-		rnd = rand()/5555555;
+		generated_number = rand()/5555555;
 
 		cin>>option;
 
