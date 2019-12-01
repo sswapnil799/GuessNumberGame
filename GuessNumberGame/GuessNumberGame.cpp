@@ -9,20 +9,32 @@ using std::endl;
 using std::cin;
 using std::string;
 
-unsigned int option = 0, guess_number = 0, generated_number;
+unsigned int option = 0, guess_count = 0, guess_number = 0, guessed_numberlist[100], generated_number;
 
 void playgame()
 {
 	cout<<"Game started\n\n";
+
 	do
 	{
 		cout<<"Enter guess_number value\n\n";
 		cin>>guess_number;
 
+		guessed_numberlist[guess_count] = guess_number;
+		guess_count++;
+
 		if (guess_number == generated_number)
 		{
+			for(unsigned int i = 0; i < 	guess_count; i++)
+			{
+				cout<<"guessed_numberlist["<<i<<"]: "<<guessed_numberlist[i]<<endl;
+			}
+			guess_count = 0;
+
+			cout<<endl;
 			cout<<"your guess_number is correct\n";
-			cout<<"generated_number is: "<<generated_number<<endl<<"guess_number is: "<<guess_number<<endl;
+			cout<<"generated_number is: "<<generated_number<<endl;
+			cout<<"matched guess_number is: "<<guess_number<<endl;
 			break;
 		}
 		else if(guess_number < generated_number)
@@ -38,6 +50,7 @@ void playgame()
 
 int main()
 {
+	guess_count = 0;
 	srand(time(0));
 	do{
 		cout<<"Enter your option\n";
