@@ -7,7 +7,7 @@ LIBS =
 TARGET =	GuessNumberGame
 
 $(TARGET):	$(OBJS)
-	$(CXX) -o $(TARGET) $(OBJS) $(LIBS)
+	$(CXX) -o $(TARGET) $(OBJS) $(LIBS) -std=c++11
 
 all:	$(TARGET)
 

@@ -3,38 +3,42 @@
 #include <stdlib.h>
 #include <cmath>
 #include <climits>
+#include <vector>
 
 using std::cout;
 using std::endl;
 using std::cin;
 using std::string;
 
-unsigned int option = 0, guess_count = 0, guess_number = 0, guessed_numberlist[100], generated_number;
+unsigned int option = 0, guess_number = 0, generated_number;
+
+std::vector<unsigned int> guessed_numberlist;
 
 void playgame()
 {
-	cout<<"Game started\n\n";
+	int i = 0;
+	cout<<"Game started"<<endl;
 
 	do
 	{
-		cout<<"Enter guess_number value\n\n";
+		cout<<"Enter guess_number value"<<endl;
 		cin>>guess_number;
 
-		guessed_numberlist[guess_count] = guess_number;
-		guess_count++;
+		guessed_numberlist.push_back(guess_number);
 
 		if (guess_number == generated_number)
 		{
-			for(unsigned int i = 0; i < 	guess_count; i++)
+			for(std::vector<unsigned int>::iterator it = guessed_numberlist.begin(); it != guessed_numberlist.end(); ++it)
 			{
-				cout<<"guessed_numberlist["<<i<<"]: "<<guessed_numberlist[i]<<endl;
+				i++;
+				cout<<"guessed number "<<i<<": "<<*it<<endl;
 			}
-			guess_count = 0;
-
 			cout<<endl;
-			cout<<"your guess_number is correct\n";
-			cout<<"generated_number is: "<<generated_number<<endl;
-			cout<<"matched guess_number is: "<<guess_number<<endl;
+			cout<<"Number of guess: "<<i<<endl;
+			cout<<"your guess number is correct which is: "<<guess_number<<endl;
+			cout<<"Machine generated number was: "<<generated_number<<endl;
+			cout<<endl;
+
 			break;
 		}
 		else if(guess_number < generated_number)
@@ -50,14 +54,13 @@ void playgame()
 
 int main()
 {
-	guess_count = 0;
 	srand(time(0));
 	do{
-		cout<<"Enter your option\n";
+		cout<<"Enter your option"<<endl;
 		cout<<"1. Play\n";
-		cout<<"0. Quit\n\n";
+		cout<<"0. Quit\n";
 
-		generated_number = rand()/5555555;
+		generated_number = rand() % (100 + 1);
 
 		cin>>option;
 
@@ -67,6 +70,7 @@ int main()
 			cout<<"Good bye\n";
 			break;
 		case 1:
+			guessed_numberlist.clear();
 			playgame();
 			break;
 		default:
